@@ -1,0 +1,32 @@
+--Create a candy store database
+
+CREATE TABLE Store (id INTEGER PRIMARY KEY, item TEXT, flavor TEXT, pack_quantity INTEGER, price INTEGER, popularity_ranking INTEGER);
+
+INSERT INTO Store VALUES (1, "Sucker", "Cherry", 2, 1.5, 10);
+INSERT INTO Store VALUES (2, "Sucker", "Lemon", 2, 1.5, 8);
+INSERT INTO Store VALUES (3, "Sucker", "Orange", 2, 1.5, 15);
+INSERT INTO Store VALUES (4, "Sucker", "Blueberry", 2, 1.5, 28);
+INSERT INTO Store VALUES (5, "Sucker", "Strawberry", 2, 1.5, 11);                                                                       
+INSERT INTO Store VALUES (6, "Taffy", "Cherry", 4, 1, 2);
+INSERT INTO Store VALUES (7, "Taffy", "Orange", 4, 1, 14);
+INSERT INTO Store VALUES (8, "Taffy", "Chocolate", 4, 1, 22);
+INSERT INTO Store VALUES (9, "Taffy", "Licorice", 4, 1, 99);
+INSERT INTO Store VALUES (10, "Taffy", "Blue Raspberry", 4, 1, 1);
+INSERT INTO Store VALUES (11, "Fudge", "Chocolate", 1, 10, 20);
+INSERT INTO Store VALUES (12, "Fudge", "Chocolate Caramel", 1, 12, 19);
+INSERT INTO Store VALUES (13, "Fudge", "Chocolate Pecan", 1, 14, 18);
+INSERT INTO Store VALUES (14, "Fudge", "White Chocolate", 1, 10, 21);
+INSERT INTO Store VALUES (15, "Fudge", "Dark Chocolate", 1, 10, 14);
+
+--Display the database ordered by price
+SELECT *FROM Store
+ORDER by price asc;
+
+--What are the top 5 most popular items?
+SELECT *FROM Store
+Order by popularity_ranking asc
+Limit 5;
+
+--What is the average price of fudge?
+SELECT avg(price) FROM store
+WHERE item="Fudge";
