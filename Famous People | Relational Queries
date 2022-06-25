@@ -1,0 +1,67 @@
+/* Project: Famous People | Relational Queries */
+
+--Create a small data set of famous people and tables relating to them:
+
+CREATE TABLE actors(
+id INTEGER PRIMARY KEY,
+name TEXT);
+INSERT INTO actors(id, name) VALUES (1, "Blake Lively");
+INSERT INTO actors(id, name) VALUES (2, "Ryan Reynolds");
+INSERT INTO actors(id, name) VALUES (3, "Will Smith");
+INSERT INTO actors(id, name) VALUES (4, "Jada Pinkett Smith");
+
+CREATE TABLE spouse_pairs(
+id INTEGER PRIMARY KEY,
+spouse_id1 INTEGER,
+spouse_id2 INTEGER);
+INSERT INTO spouse_pairs(spouse_id1, spouse_id2) VALUES (1, 2);
+INSERT INTO spouse_pairs(spouse_id1, spouse_id2) VALUES (3, 4);
+
+CREATE TABLE hometown(
+id INTEGER PRIMARY KEY,
+state TEXT,
+actor_id INTEGER);
+INSERT INTO hometown(id, state, actor_id) VALUES (1, "Los Angeles", 1);
+INSERT INTO hometown(id, state, actor_id) VALUES (2, "Vancouver", 2);
+INSERT INTO hometown(id, state, actor_id) VALUES (3, "Philadelphia", 3);
+INSERT INTO hometown(id, state, actor_id) VALUES (4, "Baltimore", 4);
+
+CREATE TABLE movies(
+id INTEGER PRIMARY KEY,
+title TEXT, 
+release_year INTEGER,
+actor_id INTEGER);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (1, "Deadpool", 2016, 1);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (2, "Free Guy", 2021, 1);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (3, "The Adam Project", 2022, 1);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (4, "A Simple Favor", 2018, 2);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (5, "The Shallows", 2016, 2);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (6, "The Age of Adaline", 2015, 2);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (7, "King Richard", 2021, 3);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (8, "Gemini Man", 2019, 3);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (9, "Bad Boys For Life", 2020, 3);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (10, "Girls Trip", 2017, 4);
+INSERT INTO movies(id, title, release_year, actor_id) VALUES (11, "The Matrix Resurrections", 2021, 4);
+
+
+--Who is married to each other?
+SELECT a.name as spouse1, b.name as spouse2
+FROM spouse_pairs s
+JOIN actors a
+ON s.spouse_id1 = a.id 
+JOIN actors b
+ON s.spouse_id2 = b.id;
+
+--From where are the actors?
+SELECT a.name, h. state 
+FROM hometown h
+JOIN actors a
+ON h.actor_id = a.id;
+
+--What movies have the actors been in?
+SELECT a.name, m.title as actor_name
+FROM actors a
+JOIN movies m
+ON m.actor_id = a.id;
+
+
